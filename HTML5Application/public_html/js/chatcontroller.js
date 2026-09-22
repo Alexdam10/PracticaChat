@@ -10,7 +10,9 @@ class chatcontroller {
     recogerTexto() {
         alert("El botón esta funcionado");
         const cogertext = document.getElementById("cuadroEscritura");
-        const texto = cogertext.value; // cogemos el valor del campo
+        // cogemos el valor del campo
+        const texto = cogertext.value; 
+        //Creamos el obejto mensaje
         const mimensaje = new mensaje(texto);
             // Guardamos el objeto en la lista del controlador
             this.lista.push(mimensaje);
@@ -32,7 +34,7 @@ class chatcontroller {
         // Limpiamos el contenido previo del cuadro para evitar duplicar mensajes
         mostrartext.innerHTML = "";
 
-        // Recorremos la lista de mensajes pasada por parámetro
+        // Recorremos la lista de mensajes pasada por parámetro(For each)
         for (const msg of lista) {
             console.log(msg.texto);
             const parrafo = document.createElement("p");
@@ -41,6 +43,6 @@ class chatcontroller {
         }
     }
 }
-
+//Esto ns porque va aqui
 chatcontroller = new chatcontroller();
 
