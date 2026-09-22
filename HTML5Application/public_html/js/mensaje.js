@@ -6,11 +6,11 @@
 class mensaje{
         
         texto="";
-        fecha;
+       //fecha;
         
         constructor(texto){
             this.texto=texto;
-            this.fecha=new Date();
+           // this.fecha=new Date();
         }
         
         get texto(){

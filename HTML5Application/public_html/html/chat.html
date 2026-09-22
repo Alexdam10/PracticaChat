@@ -8,8 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <title>Chat</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="js/chatcontroller.js"></script>
-        <script src="js/mensaje.js"></script>
+        
         <style>
             .cuadroResponsive{
                 display: block;            /* 👈 IMPORTANTE: Fuerza a que todos los elementos se comporten igual */
@@ -61,7 +60,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <div id="miCuadro" class="cuadroResponsive"></div>
         <textarea id="cuadroEscritura" class="cuadroResponsive" placeholder="Escribe aquí tu texto..."></textarea>
         <div class="btnEnviar">
-            <button onclick="chatcontroller.recogertexto()">Enviar</button>
+            <button onclick="chatcontroller.recogerTexto()">Enviar</button>
         </div>
+        
+        <script src="../js/chatcontroller.js"></script>
+        <script src="../js/mensaje.js"></script>
     </body> 
 </html>
