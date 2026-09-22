@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Chat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/chatcontroller.js"></script>
+        <script src="js/mensaje.js"></script>
+        <style>
+            .cuadroResponsive{
+                display: block;            /* 👈 IMPORTANTE: Fuerza a que todos los elementos se comporten igual */
+                width: 90%;             /* Ocupa el 90% de la pantalla en dispositivos chicos */
+                max-width: 500px;       /* Pero nunca se ensancha más de 500px en monitores grandes */
+                max-height: 1000px;      /*El tamañao vertical del cuadro */
+                margin: 20px auto;      /* Lo centra horizontalmente */
+                margin: 20px 0 20px 20px;  /* Alineados a la izquierda (arriba | derecha | abajo | izquierda) */
+                box-sizing: border-box; /* Evita que el padding deforme el tamaño total */
+
+                /* Apariencia visual */
+                background-color: #f9f9f9;
+                border: 2px solid #333;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+            }
+
+            div.cuadroResponsive{
+                min-height: 100px; /* 👈 Esto evita que se aplaste como una línea */
+            }
+
+            .btnEnviar {
+                display: block;             /* Se coloca en su propia línea debajo del cuadro */
+                width: 90%;
+                max-width: 800px;           /* Mismo ancho máximo que los cuadros */
+                margin: 10px 0 20px 20px;   /* Alineado con los 20px de la izquierda de los cuadros */
+                text-align: right;          /* Alinea el botón al borde derecho de ese espacio */
+            }
+
+            .btnEnviar button {
+                padding: 10px 25px;
+                font-size: 16px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+            .btnEnviarr button:hover {
+                background-color: #0056b3;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="miCuadro" class="cuadroResponsive"></div>
+        <textarea id="cuadroEscritura" class="cuadroResponsive" placeholder="Escribe aquí tu texto..."></textarea>
+        <div class="btnEnviar">
+            <button onclick="chatcontroller.recogertexto()">Enviar</button>
+        </div>
+    </body> 
+</html>
