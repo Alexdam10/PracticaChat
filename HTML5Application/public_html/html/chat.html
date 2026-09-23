@@ -12,14 +12,11 @@
         <div id="msgContainer"><ul id="msgList"></ul></div>
         <h3>MI Mensajes</h3>
         <textarea id="msgText"></textarea>
-<!--añadimos el onclick porque on es un controlador de algo en este caso del click 
-//enviarmensaje es la funcion y usamos document.get con el nombre de mi textarea
-  // metemos value para que me coja el mensaje 
-  Ejemplo acoplamiento fuerte -->
-   <button id="sendButton" 
-   onclick="enviarMensaje(document.getElementById('msgText').value);"
-   >Enviar</button>
+
+   <button id="sendButton">Enviar</button>
    
+   <!-- Ejemplo acoplamiento debil  -->
+   <script type="module" src="./js/chatcontroller.js"></script>
    
     </body>
 </html>
