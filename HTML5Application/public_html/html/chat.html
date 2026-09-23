@@ -5,11 +5,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Chat</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body>
-        <div>TODO write content</div>
-    </body>
+        <h3>Mensajes</h3>
+        <div id="msgContainer"><ul id="msglist"></ul></div>
+        <h3>Mi mensaje</h3>
+        <textarea id="msgText" ></textarea>
+        <!--Ejemplo de acoplamiento fuerte
+        <button id="sebdbutton" onclick="enviarMensajes(document.getElementById('msgText.va'))"></button>
+        -->
+        
+        <!--Ejemplo de acoplamiento debil-->
+        <button id="senddbutton" ></button>
+        
+        
+        
+        <script type="module" src="/js/chatcontroller.js"></script>
+     
+    </body> 
 </html>
