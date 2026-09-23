@@ -6,21 +6,23 @@
 
 
 class mensaje{
+        //Ponemmos el _ para que los atributos de la clase sean privados 
+         _texto="";
+        _fecha;
         
-        texto="";
-        fecha;
-        
-        constructor(texto, fecha){
-            this.texto=texto;
-            this.fecha=new Date();
+        constructor(texto,fecha){
+            this._texto=texto;
+            this._fecha=fecha;
         }
         
         get texto(){
-            return this.texto;
+            return this._texto;
         }
         
         get fecha(){
-            return this.fecha;
+            //Tenemos que formatear el formato de la fecha para poder mostar por pantalla,
+            //Porque si no sale un número muy raro
+            return new Date (this._fecha).toLocaleDateString();
         }
 }
 
