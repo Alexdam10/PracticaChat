@@ -11,9 +11,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     </head>
     <body>
         <h3>Mensajes</h3>
-        <div><ul></ul></div>
+        <div id="msgContainer"><ul id="msgList"></ul></div>
         <h3>Mi Mensaje</h3>
-        <textarea></textarea>
-        <button>Enviar</button>
+        <textarea id="msgText"></textarea>
+        <!--acoplamiento fuerte :
+        <button id="sendButtton" onclick="enviarMensajes(document.getElementById('msgText').value);">Enviar</button>-->
+        <script type="module" src="/js/chatController.js"></script>
+        
+        
     </body>
 </html>
