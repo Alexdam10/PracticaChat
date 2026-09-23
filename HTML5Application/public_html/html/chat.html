@@ -7,10 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        //identificar con id lo que vamos a manejar
         <h3>Mensajes</h3> 
-        <div><ul></ul></div>
+        <div id="msgContainer"><ul id="msgList"></ul></div>
         <h3>MI Mensajes</h3>
-        <textarea></textarea>
-        <button>Enviar</button>
+        <textarea id="msgText"></textarea>
+<!--añadimos el onclick porque on es un controlador de algo en este caso del click 
+//enviarmensaje es la funcion y usamos document.get con el nombre de mi textarea
+  // metemos value para que me coja el mensaje 
+  Ejemplo acoplamiento fuerte -->
+   <button id="sendButton" 
+   onclick="enviarMensaje(document.getElementById('msgText').value);"
+   >Enviar</button>
+   
+   
     </body>
 </html>
