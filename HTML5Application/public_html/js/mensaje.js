@@ -7,22 +7,26 @@
 
 class mensaje{
         //Ponemmos el _ para que los atributos de la clase sean privados 
-         _texto="";
-        _fecha;
         
+        //No hace falta inicializar los atrubutis con definirlos en el constructor ya los reconoce
         constructor(texto,fecha){
-            this._texto=texto;
-            this._fecha=fecha;
+            this.texto=texto;
+            this.fecha=fecha;
         }
         
-        get texto(){
-            return this._texto;
+        get gettexto(){
+            return this.texto;
         }
         
-        get fecha(){
+        
+        
+     
+        get getfecha(){
             //Tenemos que formatear el formato de la fecha para poder mostar por pantalla,
             //Porque si no sale un número muy raro
-            return new Date (this._fecha).toLocaleDateString();
+            return this.fecha;
         }
 }
+
+export{mensaje}
 
