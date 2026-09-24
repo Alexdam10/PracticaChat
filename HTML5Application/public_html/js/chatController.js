@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
-
+//importar la clase mensaje
+import {Mensaje} from './mensaje.js'
 //ARRAY DE MENSAJES
 //declarar variable var,let,const(no se puede reafirmar)
 var mensaje = new Array();
@@ -24,8 +25,13 @@ function enviarMensajes() {
     let textoMensaje = document.getElementById("msgText").value;
 //enviar el mensaje con la hora que se envia
 //añades a la coleccion
-    mensaje.add(new Mensaje(mensaje,new Date));
+    mensaje.push(new Mensaje(textoMensaje, new Date()));
 }
+    //limpiar la caja 
+    document.getElementById("msgText").value="";
+    //enfocamos la caja
+    document.getElementById("msgText").focus();
+    
 //asociar un listener
 //cuando pulsas click en el boton se envia el mensaje
 document.getElementById("sendButton").addEventListener('click', enviarMensajes);
