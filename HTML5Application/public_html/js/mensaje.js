@@ -24,7 +24,7 @@ class mensaje{
         get getfecha(){
             //Tenemos que formatear el formato de la fecha para poder mostar por pantalla,
             //Porque si no sale un número muy raro
-            return this.fecha;
+            return this.fecha.for;
         }
 }
 

@@ -13,35 +13,39 @@ function actualizarMensajes() {
     //alert("Estas dentro de actualizar");
     //ordenar los mensajes de mas recciente a mas antiguo
 
-    //Localizamos el elemento donde vamos a poner la ista de los mensajes
-    let lstUl = document.getElementById("msglist");
+
+
     //Sirve para limpiar el ul cada vez q   ue hacemos una interración con el bucle
-    lstUl.innerHTML = "";
-    //Nos creamos un documento li para poder escribir lo q tenemos guardado en el array
+    let  msglist = document.getElementById("msglist");
+    //poenemos nodo padre y va borrando mientras tenga hijos
+    while (msglist.firstChild) {
+        msglist.removeChild(msglist.firstChild);
+    }
+    mensajes.reverse();
+    for (var i = 0; i < mensajes.length; i++) {
+        //document.getElementById("msglist").textContent="<li>"+mensajes[i].gettexto+"</li>";
+        //Nos creamos un elemento li
+        let li = document.createElement("li");
+        //El añadimos el contenido del objeto
+        // Formato corto estándar (ej: "25/9/2026")
+        let contenido = document.createTextNode(mensajes[i].gettexto + " " + new Date(mensajes[i].getfecha).toLocaleDateString('es-ES'));
 
+        li.appendChild(contenido);
 
+        //Lo añadimos al textarea
+        msglist.insertBefore(li, null);
+    }
 
-    //Recorrer la colección de mensajes  
-    /*  for (let msg of mensajes) {
-     
-     //Llamamos al onbejto li para poder escribir el array en el cuadro 
-     li.textContent = msg.gettexto + "  " + msg.getfecha;
-     
+    /*
+     //Este método da la vuelta al array
+     var DelReves=mensajes.reverse();
+     for(let msg of DelReves){
+     //Nos creamos un documento li para poder escribir lo q tenemos guardado en el array
+     let li = document.createElement("li");
+     li.textContent=msg.gettexto +" "+ msg.getfecha;
      lstUl.appendChild(li);
-     console.log(msg.texto + "  " + msg.fecha);
-     //Recorremos el array de manera inversa
-     //Primero tenemos q saber cuantas posiciones tiene
      
      }*/
-
-    let contArray = mensajes.length;
-    console.log("Este es el valor de array " + contArray);
-    for (var i = contArray - 1; i >= 0; i--) {
-        let li = document.createElement("li");
-        li.textContent = mensajes[i].gettexto + " " + mensajes[i].getfecha;
-        lstUl.appendChild(li);
-        console.log("hola");
-    }
 
     // En cada interracion añadimos al elemento <div> contenido
     //cosnsistente en el texto del mensaje, dentro de un elemento <li>
