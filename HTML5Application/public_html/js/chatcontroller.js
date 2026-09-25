@@ -10,17 +10,44 @@ var mensajes=new Array();
 /**
  * muestra todos los mensajes del paramentro  
  * pagina de forma de texto dentro del div 
- * @param {type} mensajes de coleccion para mostrar los mensajes 
- * @returns {undefined}
+ 
  */
-function actualizarMensajes(mensajes){
+function actualizarMensajes(){
     // ordenar los mensajes por fecha de mensaje de forma 
-    // mas reciente a mas antiguo. 
+    // mas reciente a mas antiguo reverse para re-ordenar los mensajes. 
+    mensajes.reverse();
     
-    // despues recorremos la coleccion de mensajes
-    
+    //obtenemos y limpiamos la lista del mensajes eso es el UL .
+     const listMsgs = document.getElementById("msgList");
+     
+    while (listMsgs.firstChild) {
+    listMsgs.removeChild(listMsgs.firstChild);
+}
+    // despues recorremos la coleccion de mensajes un array dentro de js 
+    for(let i = 0 ;i<mensajes.length;i++){
+         console.log(mensajes[i]);
+         
             // en cada iteracion añadimos al elemento <DIV> contenido 
-            // consistente en el texto del mensaje, dentro de un elemento<li> 
+            // consistente en el texto del mensaje, dentro de un elemento<li>
+           
+             // creo el elemento li para que no me salga en el HTML
+           const newLi = document.createElement("li");
+           
+           // le meto contenido y hay que añadir hora.
+           const newContent = document.createTextNode(mensajes[i].text+"   "
+             +new Intl.DateTimeFormat("es-ES").format(mensajes[i].dateTime.getTime()));
+           
+           // creo el hijo para que herede el contenido     
+           newLi.appendChild(newContent);
+           
+           //le añado el elemento y el contenido al DOM 
+           // es msglist porque en el HTML lo hemos deginido en el ID.
+           //null me lo pone a continuacin del siguente LI 
+            listMsgs.insertBefore(newLi, null);
+         
+
+    }
+           
             
             }    
    
@@ -28,7 +55,6 @@ function actualizarMensajes(mensajes){
 /**
  * funcion que recoje los mensajes del uysuario y lo manda a la coleccion.
  * pagina de forma de texto dentro del div 
- 
  * @returns {undefined}
  */         
             
@@ -46,7 +72,11 @@ function actualizarMensajes(mensajes){
      
      //enfocamos la caja de texto del mensaje 
      document.getElementById("msgText").focus();
+     
+     //actualizamos la lista de mensaje 
+     actualizarMensajes();
  }
+ 
     
 //MANEJADORES DE EVENTOS.
 //asocio la funcion actualizar mensaje como manejadora del eveento .
