@@ -28,7 +28,7 @@ function actualizarMensajes() {
         let li = document.createElement("li");
         //El añadimos el contenido del objeto
         // Formato corto estándar (ej: "25/9/2026")
-        let contenido = document.createTextNode(mensajes[i].gettexto + " " + new Date(mensajes[i].getfecha).toLocaleDateString('es-ES'));
+        let contenido = document.createTextNode(mensajes[i].gettexto + " " +mensajes[i].getfecha);
 
         li.appendChild(contenido);
 
