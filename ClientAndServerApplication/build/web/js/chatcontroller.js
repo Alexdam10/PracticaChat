@@ -34,8 +34,8 @@ function actualizarMensajes(){
            const newLi = document.createElement("li");
            
            // le meto contenido y hay que añadir hora.
-           const newContent = document.createTextNode(mensajes[i].text + "   "
-           + mensajes[i].dateTime.toLocaleTimeString("es-ES"));
+           const newContent = document.createTextNode(mensajes[i].text+"   "
+             +new Intl.DateTimeFormat("es-ES").format(mensajes[i].dateTime.getTime()));
            
            // creo el hijo para que herede el contenido     
            newLi.appendChild(newContent);
@@ -77,7 +77,7 @@ function actualizarMensajes(){
      actualizarMensajes();
  }
  
- function emoticono(){
+    function emoticono(){
    
     console.log("emoticono cargada");
 
@@ -108,6 +108,7 @@ function actualizarMensajes(){
     });
 }
  
+ 
     
 //MANEJADORES DE EVENTOS.
 //asocio la funcion actualizar mensaje como manejadora del eveento .
@@ -118,6 +119,4 @@ document.addEventListener("DOMContentloaded", actualizarMensajes());
 
 //asocio la funcion ennviar mensaje como manejadora del evento.
 //click del evento send buttonn. 
-document.getElementById("sendButton").addEventListener('click', enviarMensaje);
-
-emoticono();
+document.getElementById("sendButton").addEventListener('click', enviarMensaje);emoticono();
