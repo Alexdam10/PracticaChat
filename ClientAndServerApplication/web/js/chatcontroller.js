@@ -61,6 +61,10 @@ function actualizarMensajes() {
 function enviarMensaje() {
     //Obetenmos el mensaje 
     let texto = document.getElementById("msgText").value;
+    //Si el texto esta vacio salimos de la función sin hacer nada
+    if (texto.length ===0){
+        return;
+    }
 
     // lo añadimos a la coleccion de mensajes
     // mensajes.push(new mensaje(texto, Date.now()));
