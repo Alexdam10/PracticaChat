@@ -1,4 +1,5 @@
 /* 
+
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
@@ -106,9 +107,44 @@ function actualizarMensajes() {
         escritura.focus();
         actualizarMensajes();
     }
+
+
+
+
+ function emoticono(){
+   
+    console.log("emoticono cargada");
+
+    const emojiButton = document.getElementById("emojiButton");
+    const emojiPanel = document.getElementById("emojiPanel");
+    const msgText = document.getElementById("msgText");
+
+    emojiButton.addEventListener("click", function () {
+        emojiPanel.style.display = (emojiPanel.style.display === "none") ? "flex" : "none";
+    });
+
+    emojiPanel.querySelectorAll(".emoji").forEach(function (emoji) {
+        emoji.style.cursor = "pointer";
+        emoji.style.fontSize = "1.5rem";
+
+        emoji.addEventListener("click", function () {
+            const inicio = msgText.selectionStart;
+            const fin = msgText.selectionEnd;
+
+            msgText.value = msgText.value.slice(0, inicio)
+                    + emoji.textContent
+                    + msgText.value.slice(fin);
+
+            const nuevaPos = inicio + emoji.textContent.length;
+            msgText.setSelectionRange(nuevaPos, nuevaPos);
+            msgText.focus();
+        });
+    });
+}
 //asociar un listener
 //cuando pulsas click en el boton se envia el mensaje
     document.getElementById("sendButton").addEventListener('click', enviarMensajes);
 //asocio el add event   
 //actualizar se asocia con el evento de carga del DOM de la pagina 
-    document.addEventListener('DOMContentLoaded', actualizarMensajes);
+document.getElementById("sendButton").addEventListener('click', enviarMensaje);emoticono();
+
