@@ -1,83 +1,117 @@
 /* 
-Script chat controlle 
 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
-//sirve para importar la clase mensaje y que sepa que es lo que tiene que utilizar.
-import {Mensaje} from './mensaje.js'
-/**Array de mensaje*/ // variable global
-
-var mensajes=new Array();
-/**
- * muestra todos los mensajes del paramentro  
- * pagina de forma de texto dentro del div 
- 
- */
-function actualizarMensajes(){
-    // ordenar los mensajes por fecha de mensaje de forma 
-    // mas reciente a mas antiguo reverse para re-ordenar los mensajes. 
-    mensajes.reverse();
-    
-    //obtenemos y limpiamos la lista del mensajes eso es el UL .
-     const listMsgs = document.getElementById("msgList");
-     
-    while (listMsgs.firstChild) {
-    listMsgs.removeChild(listMsgs.firstChild);
-}
-    // despues recorremos la coleccion de mensajes un array dentro de js 
-    for(let i = 0 ;i<mensajes.length;i++){
-         console.log(mensajes[i]);
-         
-            // en cada iteracion añadimos al elemento <DIV> contenido 
-            // consistente en el texto del mensaje, dentro de un elemento<li>
-           
-             // creo el elemento li para que no me salga en el HTML
-           const newLi = document.createElement("li");
-           
-           // le meto contenido y hay que añadir hora.
-           const newContent = document.createTextNode(mensajes[i].text+"   "
-             +new Intl.DateTimeFormat("es-ES").format(mensajes[i].dateTime.getTime()));
-           
-           // creo el hijo para que herede el contenido     
-           newLi.appendChild(newContent);
-           
-           //le añado el elemento y el contenido al DOM 
-           // es msglist porque en el HTML lo hemos deginido en el ID.
-           //null me lo pone a continuacin del siguente LI 
-            listMsgs.insertBefore(newLi, null);
-         
-
-    }
-           
-            
-            }    
-   
-   
-/**
- * funcion que recoje los mensajes del uysuario y lo manda a la coleccion.
- * pagina de forma de texto dentro del div 
+       
+/*esta funcion muestra los mensajes del parametro
+ * en un pagina en forma de texto dentro 
+ * @param {type} mensaje
  * @returns {undefined}
- */         
+ */
+
+    //ordenar mensaje por fecha de mensaje de forma 
+    //que siempre sea de reciente a antiguo(en cada actualizacion)
+    //let lista = document.getElementById("msgList");
+    //lista.innerHTML = "";
+    //let item = document.createElement("li");
+    //item.textContent = mensaje[i].texto;
+    //lista.appendChild(item);
+    
+//importar la clase mensaje
+import {Mensaje} from './mensaje.js'
+//ARRAY DE MENSAJES
+//declarar variable var,let,const(no se puede reafirmar)
+var mensaje = new Array(); 
+    //en cada iteraccion añadimos al elemento <div> contenido   
+    //consiste en el tecto del mensaje dentro de un elemeto(dinamico)
+    
+    
+  /* function actualizarMensajes() {   
+        const listMsgs = document.getElementById("msgList");
+        while (listMsgs.firstChild) {
+            listMsgs.removeChild(listMsgs.firstChild);}
+//recorrer la coleccion de mensajes(scroll)
+        for (let i = 0; i < mensaje.length; i++) {
+            const newli = document.createElement("li");
+            const newCont = document.createTextNode(mensaje[i].texto + " " + mensaje[i].dateTime);
             
-            
- function enviarMensaje(){
-     // Recibe el texto del usuario 
-     let mensaje=document.getElementById("msgText").value;
-     
-     // lo añades a la coleccion de mensaje con la hora push introducir en el arry 
-     //pop sacar del array.
-     mensajes.push(new Mensaje (mensaje, new Date()));
-     
-     //limpar la caja de texto despues de enviar el mensaje 
-     document.getElementById("msgText").value="";
-     
-     //enfocamos la caja de texto del mensaje 
-     document.getElementById("msgText").focus();
-     
-     //actualizamos la lista de mensaje 
-     actualizarMensajes();
- }
- 
-    function emoticono(){
+            newli.appendChild(newCont);
+            const listMsgs = document.getElementById("msgList");
+            listMsgs.insertBefore(newli, null);}
+        
+    }*/
+    
+function actualizarMensajes() {
+    // 1. Obtenemos la referencia a la lista <ul id="msgList"> del HTML
+    const listMsgs = document.getElementById("msgList");
+
+    // 2. Vaciamos la lista antes de volver a pintarla
+    //    (si no, los mensajes se duplicarían cada vez que se llama a esta función)
+    while (listMsgs.firstChild) {
+        listMsgs.removeChild(listMsgs.firstChild);
+    }
+
+    // 3. Recorremos el array de mensajes para crear un <li> por cada uno
+    for (let i = 0; i < mensaje.length; i++) {
+
+        // Creamos el elemento <li> que contendrá el mensaje completo
+        const newli = document.createElement("li");
+
+        // --- Parte del texto del mensaje ---
+        // Creamos un <span> solo para el texto escrito por el usuario
+        const textoSpan = document.createElement("span");
+        // textContent (no innerHTML) para que el texto se trate como texto plano,
+        // nunca como HTML/código (evita problemas de seguridad tipo XSS)
+        textoSpan.textContent = mensaje[i].texto;
+
+        // --- Parte de la hora del mensaje ---
+        // Creamos un <span> aparte para la hora, así podemos darle su propio estilo
+        const horaSpan = document.createElement("span");
+        // toLocaleTimeString() convierte el objeto Date en un texto de hora
+        // legible según el idioma/región indicado ('es-ES'),
+        // en vez del formato largo por defecto (día, fecha, hora, zona horaria)
+        horaSpan.textContent = " " + mensaje[i].dateTime.toLocaleTimeString('es-ES', {
+            hour: '2-digit',   // fuerza dos dígitos, ej: "09" en vez de "9"
+            minute: '2-digit'
+        });
+        
+
+        // Estilos aplicados directamente al span de la hora:
+        horaSpan.style.fontSize = "0.75rem";   // letra más pequeña que el texto del mensaje
+        horaSpan.style.color = "#888";         // gris, para que no compita visualmente con el texto
+        horaSpan.style.marginLeft = "0.5rem";  // separación respecto al texto del mensaje
+
+        // 4. Montamos el <li>: primero el texto, luego la hora
+        newli.appendChild(textoSpan);
+        newli.appendChild(horaSpan);
+
+        // 5. Insertamos el <li> ya completo dentro de la lista <ul>
+        listMsgs.appendChild(newli);
+    }}
+    // Bajamos el scroll hasta el final para ver siempre el último mensaje
+        const contenedor = document.getElementById("msgContainer");
+        contenedor.scrollTop = contenedor.scrollHeight;
+
+    
+    
+    function enviarMensajes() {
+//recibe el texto <textarea>
+        let textoMensaje = document.getElementById("msgText").value;
+//enviar el mensaje con la hora que se envia
+//añades a la coleccion
+        mensaje.push(new Mensaje(textoMensaje, new Date()));
+
+        let escritura = document.getElementById("msgText");
+        escritura.value = "";
+        escritura.focus();
+        actualizarMensajes();
+    }
+
+
+
+
+ function emoticono(){
    
     console.log("emoticono cargada");
 
@@ -107,16 +141,10 @@ function actualizarMensajes(){
         });
     });
 }
- 
- 
-    
-//MANEJADORES DE EVENTOS.
-//asocio la funcion actualizar mensaje como manejadora del eveento .
-//Dom de la pagina. 
-//el dom es cuando cargas la pagina por primera vez
-
-document.addEventListener("DOMContentloaded", actualizarMensajes());
-
-//asocio la funcion ennviar mensaje como manejadora del evento.
-//click del evento send buttonn. 
+//asociar un listener
+//cuando pulsas click en el boton se envia el mensaje
+    document.getElementById("sendButton").addEventListener('click', enviarMensajes);
+//asocio el add event   
+//actualizar se asocia con el evento de carga del DOM de la pagina 
 document.getElementById("sendButton").addEventListener('click', enviarMensaje);emoticono();
+
