@@ -1,5 +1,4 @@
-/* 
-
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
@@ -25,22 +24,15 @@ import {Mensaje} from './mensaje.js'
 var mensaje = new Array(); 
     //en cada iteraccion añadimos al elemento <div> contenido   
     //consiste en el tecto del mensaje dentro de un elemeto(dinamico)
+var msgDia = document.getElementById("msgDia");
+let diaHoy = document.createElement("li");
+let textoHoy = new Date().toLocaleDateString("es-ES",
+        {weekday: "long", day: "numeric", month: "long", year: "numeric"});
+;
+diaHoy.textContent = textoHoy.charAt(0).toUpperCase() + textoHoy.slice(1);
+msgDia.appendChild(diaHoy);
     
-    
-  /* function actualizarMensajes() {   
-        const listMsgs = document.getElementById("msgList");
-        while (listMsgs.firstChild) {
-            listMsgs.removeChild(listMsgs.firstChild);}
-//recorrer la coleccion de mensajes(scroll)
-        for (let i = 0; i < mensaje.length; i++) {
-            const newli = document.createElement("li");
-            const newCont = document.createTextNode(mensaje[i].texto + " " + mensaje[i].dateTime);
-            
-            newli.appendChild(newCont);
-            const listMsgs = document.getElementById("msgList");
-            listMsgs.insertBefore(newli, null);}
-        
-    }*/
+
     
 function actualizarMensajes() {
     // 1. Obtenemos la referencia a la lista <ul id="msgList"> del HTML
@@ -98,6 +90,11 @@ function actualizarMensajes() {
     function enviarMensajes() {
 //recibe el texto <textarea>
         let textoMensaje = document.getElementById("msgText").value;
+      
+      
+        if (texto.length ===0){
+        return;
+    }
 //enviar el mensaje con la hora que se envia
 //añades a la coleccion
         mensaje.push(new Mensaje(textoMensaje, new Date()));
@@ -147,4 +144,17 @@ function actualizarMensajes() {
 //asocio el add event   
 //actualizar se asocia con el evento de carga del DOM de la pagina 
 document.getElementById("sendButton").addEventListener('click', enviarMensaje);emoticono();
+
+document.getElementById("msgText").addEventListener("keydown",pulsarTecla);
+
+
+
+//Creamos la funcion para que reconozca la tecla enter
+function pulsarTecla(tecla){
+    if (tecla.key === "Enter") {
+        tecla.preventDefault();
+        enviarMensaje();
+    }
+}
+
 
